@@ -1,0 +1,26 @@
+.header {
+   background: #001304;
+   padding: 50px 0;
+}
+
+.header__list {
+   list-style: none;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.header__item {
+   margin-right: 15px;
+}
+
+.header__link {
+   color: #ffffff;
+   font-size: 18px;
+   line-height: 100%;
+   text-transform: uppercase;
+}
+
+.header__link.active {
+   color: rgb(119, 4, 4);
+}
