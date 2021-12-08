@@ -26,13 +26,14 @@ const Layout = () => {
             <Outlet />
          </div>
 
-         <footer>
+         {/* <footer>
             <div className="container">
                2021
             </div>
-         </footer>
+         </footer> */}
       </>
    )
 }
 
 export default Layout
+
