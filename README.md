@@ -1,70 +1,120 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+import TextField from "@mui/material/TextField";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-## Available Scripts
+      <TextField
+        id="outlined-basic"
+        label="Todo text..."
+        variant="outlined"
+        size="small"
+      />
 
-In the project directory, you can run:
+      <AddCircleIcon
+        color="primary"
+        fontSize="large"
+      >
+        Add
+      </AddCircleIcon>
 
-### `npm start`
+.todos-create {
+   margin-bottom: 25px;
+   position: relative;
+   display: flex;
+   max-width: 300px;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+   border-radius: 10px;
+   background: #b5b4b4;
+   padding: 15px;
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   &__input {
+      border: 1px solid tomato;
+      padding: 6px 10px;
+      margin-right: 10px;
+   }
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   &__error {
+      display: none;
+      position: absolute;
+      bottom: -15px;
+      font-size: 12px;
+      line-height: 12px;
+      left: 0;
+      color: tomato;
 
-### `npm test`
+      &.show {
+         display: block;
+      }
+   }
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   &__button {
+      cursor: pointer;
+   }
+}
 
-### `npm run build`
+// -----------------------------------
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { Button } from "@mui/material";       
+       
+        <IconButton
+          color="primary"
+          aria-label="delete"
+          size="large"
+        >
+          <DeleteIcon fontSize="inherit" />
+        </IconButton>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+        <EditIcon color="primary" size="large"></EditIcon>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        <Button color="primary" variant="text"></Button>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// ------ Checkbox ------
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   <input
+      className="todo__checkbox"
+      id={todo.id}
+      type="checkbox"
+   />
+   <label htmlFor={todo.id} className="todo__label-checkbox" />
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   &__label-checkbox {
+      position: relative;
+      cursor: pointer;
+      margin-right: 60px;
+   }
 
-## Learn More
+   &__label-checkbox:before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 45px;
+      height: 20px;
+      border-radius: 13px;
+      background: #cdd1da;
+      box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.4);
+      transition: 0.2s;
+   }
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   &__label-checkbox:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      transition: 0.2s;
+   }
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   &__checkbox:checked + &__label-checkbox::after {
+      left: 24px;
+   }

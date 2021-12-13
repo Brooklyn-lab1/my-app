@@ -1,13 +1,66 @@
-import TextField from '@mui/material/TextField';
-import Buttons from '../Buttons/Button'
+import TextField from "@mui/material/TextField";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useState, useEffect } from "react";
+import { API } from "../../utils/api";
 
-const CreateTodo = () => {
+const CreateTodo = ({ setTodos }) => {
+   const [title, setTitle] = useState('');
+   const [disabled, setDisabled] = useState(false);
+   const [showError, setShowError] = useState(false);
+
+   useEffect(() => {
+      if (title.length > 0) setShowError(false);
+   }, [title])
+
+   function createTitle(e) {
+      setTitle(e.target.value)
+   }
+
+   async function createTodo(e) {
+      if (e.key === 'Enter' || e.type === 'click') {
+         if (title) {
+            try {
+               setDisabled(!disabled);
+               const response = await API.post('/posts',
+                  {
+                     title: title,
+                     checked: false
+                  }
+               );
+               setTodos((prev) => [...prev, response.data]);
+               setTitle('');
+               setDisabled(disabled);
+            } catch (e) {
+               console.error(e);
+            }
+         } else {
+            setShowError(!showError);
+         }
+      }
+   }
+
    return (
       <div className="todos-create">
-         <TextField id="outlined-basic" label="Outlined" variant="outlined" className="todos-create__input" />
-         <Buttons text={Create}>
-
-         </Buttons>
+         <TextField
+            id="outlined-basic"
+            label="Todo text..."
+            variant="outlined"
+            size="small"
+            color="primary"
+            className="todos-create__input"
+            value={title}
+            onChange={createTitle}
+            disabled={disabled}
+         />
+         <span className={`todos-create__error ${showError ? 'show' : ''}`}>Введите имя todo</span>
+         <AddCircleIcon
+            color="primary"
+            fontSize="large"
+            onClick={createTodo}
+            className='button'
+         >
+            Add
+         </AddCircleIcon>
       </div>
    )
 }

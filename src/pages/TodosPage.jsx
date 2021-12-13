@@ -18,7 +18,7 @@ const TodosPage = () => {
    return (
       <div>
          <h1 className='title'>Todos</h1>
-         <CreateTodo />
+         <CreateTodo setTodos={setTodos} />
          {
             loading
                ?
